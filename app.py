@@ -1,10 +1,14 @@
 from flask import Flask, jsonify, request
 from ai import KeK
+import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
+load_dotenv()
 
-
+master_keys = os.getenv("master_keys")
+print(master_keys)
 @app.route("/", methods=["GET"])
 def check_status():
     return "Welcome to the Unamed A.I"
@@ -16,7 +20,11 @@ def ask(api_key=None):
     question = request.args.get("question")
     model = request.args.get("model")
     api_key = request.args.get("api_key")
+    master_key = request.args.get("master_key")
     kek = KeK(api_key)
+
+    if master_key not in master_keys:
+        return jsonify("Invalid master key"), 401
 
 
     answer = kek.ask(question, model)
@@ -27,5 +35,3 @@ def ask(api_key=None):
         return answer, 200
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
