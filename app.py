@@ -2,10 +2,15 @@ from flask import Flask, jsonify, request
 from ai import KeK
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 load_dotenv()
+
+
+CORS(app)
+
 
 master_keys = os.getenv("master_keys")
 print(master_keys)
