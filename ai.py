@@ -23,20 +23,20 @@ class KeK:
 
     def ask(self, question: str, model: str):
 
-        models = {
+        self.models = {
             "solidity": "cltqjk12m001n35zqh6v2l4jg",
             "bitcoin": "cls3bm1yf00017drv1rv2p137",
             "ethereum": "cls4frht2000njy824nn3c7g5",
-            "Ton": "cluls3lx70001144zx1dfd6mu"
+            "ton": "cluls3lx70001144zx1dfd6mu"
         }
         print(self.key)
-        if model not in models:
+        if model not in self.models:
             return "This model does not exist"
 
         data = {
             "question": question,
             "chat_history": [],
-            "knowledge_source_id": "cltqjk12m001n35zqh6v2l4jg"
+            "knowledge_source_id": self.models[model]
         }
         print("Reached pre api stage")
         text = requests.post(self.endpoint, headers=self.headers, json=data).json()
