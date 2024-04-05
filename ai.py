@@ -25,7 +25,9 @@ class KeK:
 
         models = {
             "solidity": "cltqjk12m001n35zqh6v2l4jg",
-            "bitcoin": ""
+            "bitcoin": "cls3bm1yf00017drv1rv2p137",
+            "ethereum": "cls4frht2000njy824nn3c7g5",
+            "Ton": "cluls3lx70001144zx1dfd6mu"
         }
         print(self.key)
         if model not in models:
